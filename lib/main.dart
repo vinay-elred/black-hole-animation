@@ -1,4 +1,5 @@
 import 'package:complex_animation/black_hole_animation.dart';
+import 'package:complex_animation/flip_card.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: BlackHoleAnimation(),
+          child: FlipCard(),
         ),
       ),
     );

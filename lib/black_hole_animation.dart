@@ -93,19 +93,25 @@ class _BlackHoleAnimationState extends State<BlackHoleAnimation>
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         ElevatedButton(
-          onPressed: () async {
-            holeController.forward();
-            await cardController.forward();
-            holeController.reverse();
-          },
+          onPressed: !cardController.isCompleted
+              ? () async {
+                  holeController.forward();
+                  await cardController.forward();
+                  holeController.reverse();
+                  setState(() {});
+                }
+              : null,
           child: const Text('Forward'),
         ),
         ElevatedButton(
-          onPressed: () async {
-            holeController.forward();
-            await cardController.reverse();
-            holeController.reverse();
-          },
+          onPressed: cardController.isCompleted
+              ? () async {
+                  holeController.forward();
+                  await cardController.reverse();
+                  holeController.reverse();
+                  setState(() {});
+                }
+              : null,
           child: const Text('Reverse'),
         ),
       ],
@@ -173,6 +179,7 @@ class _BlackHoleAnimationState extends State<BlackHoleAnimation>
   @override
   void dispose() {
     cardController.dispose();
+    holeController.dispose();
     super.dispose();
   }
 }
